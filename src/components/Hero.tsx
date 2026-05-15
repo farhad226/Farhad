@@ -8,7 +8,7 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-16">
       {/* Background large text */}
       <div className="absolute top-[40%] xl:top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0">
-        <h1 className="text-[16vw] xl:text-[18vw] font-black text-transparent opacity-20 tracking-tighter uppercase leading-none" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.15)' }}>
+        <h1 className="text-[20vw] md:text-[16vw] xl:text-[18vw] font-black text-transparent opacity-20 tracking-tighter uppercase leading-none" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.15)' }}>
           WordPress
         </h1>
       </div>
@@ -19,13 +19,13 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
-          className="text-xl md:text-2xl lg:text-3xl font-medium text-white mb-6 z-20 flex items-center justify-center gap-2 mt-[6vh] md:mt-0"
+          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-white mb-6 z-20 flex items-center justify-center gap-2 mt-[8vh] md:mt-0"
         >
           Hello, I am Farhad Hossain
         </motion.div>
 
         {/* Center content container containing image and overlapping text */}
-        <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center mt-4">
+        <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center mt-2 sm:mt-4">
           
           {/* Portrait Image */}
           <motion.div 
@@ -33,7 +33,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             viewport={{ once: false }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl flex justify-center"
+            className="relative z-10 w-full max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl flex justify-center"
           >
             <img 
               src={portraitImage} 
@@ -49,9 +49,9 @@ export default function Hero() {
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: false }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="relative z-20 text-center -mt-24 md:-mt-36 lg:-mt-48 w-full"
+            className="relative z-20 text-center -mt-16 sm:-mt-24 md:-mt-36 lg:-mt-48 w-full px-4"
           >
-            <h2 className="text-[16vw] md:text-[13vw] lg:text-[12vw] font-black font-heading text-white leading-[0.85] tracking-tight drop-shadow-2xl">
+            <h2 className="text-[14vw] sm:text-[15vw] md:text-[13vw] lg:text-[12vw] font-black font-heading text-white leading-[0.85] tracking-tight drop-shadow-2xl">
               <span className="block drop-shadow-md">& Web</span>
               <span className="block drop-shadow-md">Developer</span>
             </h2>
@@ -89,12 +89,12 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: false }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex lg:hidden flex-wrap justify-center gap-4 mt-8 z-30 relative"
+          className="flex lg:hidden flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4 mt-8 sm:mt-10 z-30 relative w-full px-4"
         >
-          <a href="#contact" className="bg-[#00a2ff] text-white px-8 py-3.5 rounded-full font-semibold inline-flex items-center gap-2 hover:bg-[#0081cc] transition-colors text-base shadow-[0_0_20px_rgba(0,162,255,0.4)]">
+          <a href="#contact" className="w-full sm:w-auto bg-[#00a2ff] text-white px-8 py-3.5 rounded-full font-semibold inline-flex justify-center items-center gap-2 hover:bg-[#0081cc] transition-colors text-base shadow-[0_0_20px_rgba(0,162,255,0.4)]">
             Hire Me Now <ArrowUpRight size={18} />
           </a>
-          <a href="#portfolio" className="bg-[#13141c] border border-gray-700 text-white px-8 py-3.5 rounded-full font-semibold hover:border-gray-500 transition-all text-base">
+          <a href="#portfolio" className="w-full sm:w-auto bg-[#13141c] border border-gray-700 text-white px-8 py-3.5 rounded-full text-center font-semibold hover:border-gray-500 transition-all text-base">
             View My Work
           </a>
         </motion.div>

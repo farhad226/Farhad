@@ -44,13 +44,13 @@ export default function About() {
             </div>
 
             {/* Floating Card */}
-            <div className="absolute bottom-6 left-6 lg:-bottom-6 lg:-right-6 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl flex items-center gap-4 max-w-[280px]">
-              <div className="w-12 h-12 bg-[#00a2ff] rounded-full flex items-center justify-center text-white font-bold shrink-0">
+            <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 lg:-bottom-6 lg:-right-6 bg-white/10 backdrop-blur-xl border border-white/20 p-4 sm:p-5 rounded-2xl shadow-2xl flex items-center gap-3 sm:gap-4 w-[85%] sm:max-w-[280px]">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00a2ff] rounded-full flex items-center justify-center text-white font-bold shrink-0">
                 FH
               </div>
               <div>
-                <h4 className="text-white font-semibold">Farhad Hossain</h4>
-                <p className="text-gray-300 text-xs">Expert Web Developer</p>
+                <h4 className="text-white font-semibold text-sm sm:text-base">Farhad Hossain</h4>
+                <p className="text-gray-300 text-[10px] sm:text-xs">Expert Web Developer</p>
               </div>
             </div>
           </motion.div>

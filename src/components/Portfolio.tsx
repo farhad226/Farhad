@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
 import { supabase } from '../supabase';
 
 const staticItems = [
@@ -98,7 +99,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <AnimatePresence>
             {filteredItems.map((item, index) => (
               <motion.div
@@ -109,28 +110,44 @@ export default function Portfolio() {
                 viewport={{ once: false, amount: 0.1 }}
                 exit={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group bg-[#13141c] border border-gray-800/60 rounded-3xl overflow-hidden hover:border-[#00a2ff]/50 hover:shadow-[0_0_30px_rgba(0,162,255,0.15)] transition-all cursor-pointer flex flex-col"
+                className="group relative bg-[#1c1d27]/40 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden hover:bg-[#1c1d27]/80 hover:border-[#00a2ff]/30 transition-all duration-500 cursor-pointer flex flex-col"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                {/* Glow Effect on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#00a2ff]/0 to-[#00a2ff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10 blur-xl"></div>
+
+                <div className="relative aspect-[4/3] overflow-hidden rounded-t-3xl border-b border-white/5">
                    <img 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#13141c] via-transparent to-transparent opacity-80"></div>
+                    <div className="absolute inset-0 bg-[#0a0a0f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
-                <div className="p-6 relative z-10 -mt-8 flex-grow flex flex-col justify-end">
-                  <div className="bg-[#00a2ff]/10 text-[#00a2ff] text-xs font-bold rounded-full px-3 py-1 uppercase tracking-wider w-max mb-3 border border-[#00a2ff]/20">
-                    {item.category}
+                
+                <div className="p-6 md:p-8 relative flex-grow flex flex-col justify-between">
+                  <div>
+                    <div className="bg-white/5 text-gray-300 text-xs font-semibold rounded-full px-4 py-1.5 uppercase tracking-wider w-max mb-4 border border-white/10 group-hover:border-[#00a2ff]/30 group-hover:text-[#00a2ff] transition-colors">
+                      {item.category}
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#00a2ff] transition-colors leading-tight mb-3">
+                      {item.title}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#00a2ff] transition-colors leading-tight mb-2">
-                    {item.title}
-                  </h3>
-                  {item.link && (
-                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 group-hover:text-white transition-colors flex items-center gap-2 mt-2">
-                      View Project <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
-                  )}
+                  
+                  <div className="mt-4 flex items-center justify-between">
+                    {item.link ? (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors flex items-center gap-2">
+                        View Project
+                        <span className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#00a2ff] transition-colors">
+                          <ArrowUpRight size={16} className="text-white" />
+                        </span>
+                      </a>
+                    ) : (
+                      <span className="text-sm font-medium text-gray-500 flex items-center gap-2">
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
