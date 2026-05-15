@@ -1,0 +1,41 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import About from './components/About';
+import Skills from './components/Skills';
+import Portfolio from './components/Portfolio';
+import FAQ from './components/FAQ';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import AdminDashboard from './components/admin/AdminDashboard';
+import Login from './components/admin/Login';
+
+function MainLayout() {
+  return (
+    <div className="min-h-screen bg-[#0a0a0f] text-white font-sans selection:bg-[#00a2ff] selection:text-white">
+      <Navbar />
+      <main>
+        <Hero />
+        <Services />
+        <About />
+        <Skills />
+        <Portfolio />
+        <FAQ />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />} />
+      <Route path="/admin" element={<AdminDashboard />} />
+      <Route path="/admin/login" element={<Login />} />
+    </Routes>
+  );
+}

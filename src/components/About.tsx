@@ -1,0 +1,75 @@
+import React from 'react';
+import { motion } from 'motion/react';
+import { Download } from 'lucide-react';
+import aboutImage from '../assets/images/regenerated_image_1778831992646.jpg';
+
+export default function About() {
+  return (
+    <section id="about" className="py-24 bg-[#111219]">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Image Side */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7 }}
+            className="relative"
+          >
+            <div className="relative rounded-3xl overflow-hidden rounded-tl-3xl rounded-br-[8rem]">
+              <img 
+                src={aboutImage} 
+                alt="Workspace" 
+                className="w-full h-full object-cover aspect-[4/5] opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#00a2ff]/20 to-transparent mix-blend-overlay pointer-events-none"></div>
+            </div>
+
+            {/* Floating Card */}
+            <div className="absolute bottom-6 left-6 lg:-bottom-6 lg:-right-6 bg-white/10 backdrop-blur-xl border border-white/20 p-5 rounded-2xl shadow-2xl flex items-center gap-4 max-w-[280px]">
+              <div className="w-12 h-12 bg-[#00a2ff] rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                FH
+              </div>
+              <div>
+                <h4 className="text-white font-semibold">Farhad Hossain</h4>
+                <p className="text-gray-300 text-xs">Expert Web Developer</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Text Side */}
+          <motion.div 
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-sm mb-3">About Me</p>
+            <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">
+              Crafting Digital Experiences with Passion
+            </h2>
+            <p className="text-gray-400 mb-8 leading-relaxed">
+              With over 4 years of expertise in WordPress and Elementor, I've dedicated my career to building high-quality, conversion-focused websites. My journey began with a simple curiosity about how the web works, which evolved into a professional mission to help brands establish their authority online.
+            </p>
+
+            <div className="flex flex-wrap gap-12 mb-10">
+              <div>
+                <h3 className="text-4xl font-bold text-white mb-2">4+</h3>
+                <p className="text-gray-500 text-sm uppercase tracking-wider font-medium">Years Experience</p>
+              </div>
+              <div>
+                <h3 className="text-4xl font-bold text-white mb-2">200+</h3>
+                <p className="text-gray-500 text-sm uppercase tracking-wider font-medium">Projects Completed</p>
+              </div>
+            </div>
+
+            <button className="border border-white/20 hover:border-[#00a2ff] hover:bg-[#00a2ff]/10 text-white px-8 py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all">
+              <Download size={18} />
+              Download My Resume
+            </button>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "PortfolioItem": {
+      "title": "PortfolioItem",
+      "description": "An item in the portfolio.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "image": { "type": "string" },
+        "createdAt": { "type": "number", "description": "Timestamp" }
+      },
+      "required": ["title", "category", "image", "createdAt"]
+    },
+    "Skill": {
+      "title": "Skill",
+      "description": "A skill of the developer.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "percentage": { "type": "number" },
+        "icon": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["name", "percentage", "icon", "createdAt"]
+    },
+    "FAQ": {
+      "title": "FAQ",
+      "description": "A frequently asked question.",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "answer": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["question", "answer", "createdAt"]
+    },
+    "Service": {
+      "title": "Service",
+      "description": "A service offered by the developer.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["title", "description", "icon", "createdAt"]
+    },
+    "ContactInfo": {
+      "title": "ContactInfo",
+      "description": "Contact information.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "location": { "type": "string" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["email", "phone", "location", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "portfolioItems": {
+      "schema": { "$ref": "PortfolioItem" },
+      "description": "Stores portfolio projects."
+    },
+    "skills": {
+      "schema": { "$ref": "Skill" },
+      "description": "Stores the developer's skills."
+    },
+    "faqs": {
+      "schema": { "$ref": "FAQ" },
+      "description": "Stores frequently asked questions."
+    },
+    "services": {
+      "schema": { "$ref": "Service" },
+      "description": "Stores the developer's services."
+    },
+    "siteInfo": {
+      "schema": { "$ref": "ContactInfo" },
+      "description": "Stores site information like contact info. Contains a single document 'contact'."
+    }
+  }
+}

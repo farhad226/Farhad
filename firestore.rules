@@ -1,0 +1,98 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() { return isSignedIn() && request.auth.token.email == 'farhadhossain6920@gmail.com' && request.auth.token.email_verified == true; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    function isValidPortfolioItem(data) {
+      return data.keys().hasAll(['title', 'category', 'image', 'createdAt']) && data.keys().size() == 4 &&
+             data.title is string && data.title.size() <= 150 && data.title.size() > 0 &&
+             data.category is string && data.category.size() <= 100 &&
+             data.image is string && data.image.size() <= 2000 &&
+             data.createdAt is number;
+    }
+
+    function isValidSkill(data) {
+      return data.keys().hasAll(['name', 'percentage', 'icon', 'createdAt']) && data.keys().size() == 4 &&
+             data.name is string && data.name.size() <= 150 && data.name.size() > 0 &&
+             data.percentage is number && data.percentage >= 0 && data.percentage <= 100 &&
+             data.icon is string && data.icon.size() <= 100 &&
+             data.createdAt is number;
+    }
+
+    function isValidFAQ(data) {
+      return data.keys().hasAll(['question', 'answer', 'createdAt']) && data.keys().size() == 3 &&
+             data.question is string && data.question.size() <= 500 && data.question.size() > 0 &&
+             data.answer is string && data.answer.size() <= 5000 && data.answer.size() > 0 &&
+             data.createdAt is number;
+    }
+
+    function isValidService(data) {
+      return data.keys().hasAll(['title', 'description', 'icon', 'createdAt']) && data.keys().size() == 4 &&
+             data.title is string && data.title.size() <= 150 && data.title.size() > 0 &&
+             data.description is string && data.description.size() <= 2000 && data.description.size() > 0 &&
+             data.icon is string && data.icon.size() <= 100 &&
+             data.createdAt is number;
+    }
+
+    function isValidContactInfo(data) {
+      return data.keys().hasAll(['email', 'phone', 'location', 'updatedAt']) && data.keys().size() == 4 &&
+             data.email is string && data.email.size() <= 150 &&
+             data.phone is string && data.phone.size() <= 50 &&
+             data.location is string && data.location.size() <= 200 &&
+             data.updatedAt is number;
+    }
+
+    match /portfolioItems/{itemId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(itemId) && isValidPortfolioItem(incoming());
+      allow update: if isAdmin() && isValidId(itemId) && isValidPortfolioItem(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['title', 'category', 'image'])
+      );
+      allow delete: if isAdmin() && isValidId(itemId);
+    }
+    
+    match /skills/{skillId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(skillId) && isValidSkill(incoming());
+      allow update: if isAdmin() && isValidId(skillId) && isValidSkill(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['name', 'percentage', 'icon'])
+      );
+      allow delete: if isAdmin() && isValidId(skillId);
+    }
+
+    match /faqs/{faqId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(faqId) && isValidFAQ(incoming());
+      allow update: if isAdmin() && isValidId(faqId) && isValidFAQ(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['question', 'answer'])
+      );
+      allow delete: if isAdmin() && isValidId(faqId);
+    }
+
+    match /services/{serviceId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidId(serviceId) && isValidService(incoming());
+      allow update: if isAdmin() && isValidId(serviceId) && isValidService(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['title', 'description', 'icon'])
+      );
+      allow delete: if isAdmin() && isValidId(serviceId);
+    }
+
+    match /siteInfo/contact {
+      allow read: if true;
+      allow write: if false; // Deny general write, only update pattern allowed via set/update
+      allow create: if isAdmin() && isValidContactInfo(incoming());
+      allow update: if isAdmin() && isValidContactInfo(incoming()) && (
+        incoming().diff(existing()).affectedKeys().hasOnly(['email', 'phone', 'location', 'updatedAt'])
+      );
+    }
+  }
+}
