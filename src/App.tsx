@@ -11,6 +11,7 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FloatingCTA from './components/FloatingCTA';
 import AdminDashboard from './components/admin/AdminDashboard';
 import Login from './components/admin/Login';
 import { trackVisit } from './services/analyticsService';
@@ -37,6 +38,7 @@ function MainLayout() {
         <Contact />
       </main>
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }
