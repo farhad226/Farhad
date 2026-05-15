@@ -5,7 +5,7 @@ import portraitImage from '../assets/images/regenerated_image_1778831987112.png'
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-16">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-[50px] pb-[50px] md:pt-24 md:pb-16">
       {/* Background large text */}
       <div className="absolute top-[40%] xl:top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0">
         <h1 className="text-[18vw] md:text-[14vw] xl:text-[16vw] font-black text-transparent opacity-20 tracking-tighter uppercase leading-none" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.15)' }}>
@@ -13,7 +13,7 @@ export default function Hero() {
         </h1>
       </div>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10 flex flex-col items-center w-full">
+      <div className="container mx-auto px-[15px] md:px-12 relative z-10 flex flex-col items-center w-full">
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -33,7 +33,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
             viewport={{ once: false }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative z-10 w-full max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl flex justify-center"
+            className="relative z-10 w-full max-w-[340px] sm:max-w-sm md:max-w-md lg:max-w-xl xl:max-w-2xl flex justify-center"
           >
             <img 
               src={portraitImage} 

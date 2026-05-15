@@ -190,12 +190,12 @@ export default function Testimonials() {
   const visibleTestimonials = testimonials.slice(0, visibleCount);
 
   return (
-    <section id="testimonials" className="py-24 relative overflow-hidden bg-[#0a0a0f]">
+    <section id="testimonials" className="py-[50px] md:py-24 relative overflow-hidden bg-[#0a0a0f]">
       {/* Background Orbs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00a2ff]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-[15px] md:px-12 relative z-10">
         <div className="text-center mb-16">
           <motion.h4 
             initial={{ opacity: 0, y: 20 }}

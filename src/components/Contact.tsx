@@ -86,11 +86,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#111219] relative overflow-hidden">
+    <section id="contact" className="py-[50px] md:py-24 bg-[#111219] relative overflow-hidden">
       {/* Decorative blurred background blob */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#00a2ff]/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <div className="container mx-auto px-[15px] md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
           {/* Left Side: Info */}

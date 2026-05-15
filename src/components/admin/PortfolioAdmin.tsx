@@ -37,9 +37,12 @@ const staticItems = [
 
 export default function PortfolioAdmin() {
   const [items, setItems] = useState<any[]>([]);
+  const [categories, setCategories] = useState<string[]>(['WordPress', 'Custom']);
   const [loading, setLoading] = useState(true);
   
   const [isEditing, setIsEditing] = useState(false);
+  const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
   const [currentItem, setCurrentItem] = useState<{id?: string, title: string, category: string, image: string, link?: string}>({ title: '', category: 'WordPress', image: '', link: '' });
   const [uploading, setUploading] = useState(false);
 
@@ -71,6 +74,10 @@ export default function PortfolioAdmin() {
       const { data, error } = await supabase.from('portfolio_items').select('*').order('created_at', { ascending: true });
       if (error) throw error;
       setItems(data || []);
+      
+      // Extract unique categories
+      const uniqueCats = Array.from(new Set((data || []).map((item: any) => item.category))).filter(Boolean) as string[];
+      setCategories(prev => Array.from(new Set([...prev, ...uniqueCats])));
     } catch (error) {
       console.error("Error fetching items", error);
     } finally {
@@ -85,25 +92,32 @@ export default function PortfolioAdmin() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      const finalCategory = showNewCategoryInput ? newCategory : currentItem.category;
+      if (!finalCategory) {
+        alert('Please select or enter a category');
+        return;
+      }
+
+      const itemToSave = {
+        title: currentItem.title,
+        category: finalCategory,
+        image: currentItem.image,
+        link: currentItem.link
+      };
+
       if (currentItem.id) {
-        const { error } = await supabase.from('portfolio_items').update({
-          title: currentItem.title,
-          category: currentItem.category,
-          image: currentItem.image,
-          link: currentItem.link
-        }).eq('id', currentItem.id);
+        const { error } = await supabase.from('portfolio_items').update(itemToSave).eq('id', currentItem.id);
         if (error) throw error;
       } else {
         const { error } = await supabase.from('portfolio_items').insert([{
-          title: currentItem.title,
-          category: currentItem.category,
-          image: currentItem.image,
-          link: currentItem.link,
+          ...itemToSave,
           created_at: Date.now()
         }]);
         if (error) throw error;
       }
       setIsEditing(false);
+      setShowNewCategoryInput(false);
+      setNewCategory('');
       setCurrentItem({ title: '', category: 'WordPress', image: '', link: '' });
       fetchItems();
     } catch (error) {
@@ -182,10 +196,46 @@ export default function PortfolioAdmin() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-1">Category</label>
-            <select required value={currentItem.category} onChange={e => setCurrentItem({...currentItem, category: e.target.value})} className="w-full bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff] focus:ring-1 focus:ring-[#00a2ff]">
-              <option value="WordPress">WordPress</option>
-              <option value="Custom">Custom</option>
-            </select>
+            <div className="space-y-2">
+              {!showNewCategoryInput ? (
+                <div className="flex gap-2">
+                  <select 
+                    required 
+                    value={currentItem.category} 
+                    onChange={e => setCurrentItem({...currentItem, category: e.target.value})} 
+                    className="flex-1 bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff] focus:ring-1 focus:ring-[#00a2ff]"
+                  >
+                    {categories.map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                  <button 
+                    type="button"
+                    onClick={() => setShowNewCategoryInput(true)}
+                    className="bg-gray-800 text-white px-3 py-2 rounded-lg text-xs hover:bg-gray-700 whitespace-nowrap"
+                  >
+                    + New Category
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    placeholder="Enter new category name"
+                    value={newCategory} 
+                    onChange={e => setNewCategory(e.target.value)} 
+                    className="flex-1 bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff]"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => { setShowNewCategoryInput(false); setNewCategory(''); }}
+                    className="bg-gray-800 text-white px-3 py-2 rounded-lg text-xs hover:bg-gray-700"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-1">Image URL</label>

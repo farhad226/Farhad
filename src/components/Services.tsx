@@ -38,8 +38,8 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-24 bg-[#0a0a0f]">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="services" className="py-[50px] md:py-24 bg-[#0a0a0f]">
+      <div className="container mx-auto px-[15px] md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}

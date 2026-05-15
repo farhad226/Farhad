@@ -45,6 +45,7 @@ const staticItems = [
 export default function Portfolio() {
   const [filter, setFilter] = useState('All');
   const [portfolioItems, setPortfolioItems] = useState<any[]>(staticItems);
+  const [categories, setCategories] = useState<string[]>(['All', 'WordPress', 'Custom']);
   
   useEffect(() => {
     const fetchItems = async () => {
@@ -53,6 +54,10 @@ export default function Portfolio() {
         if (error) throw error;
         if (data && data.length > 0) {
           setPortfolioItems(data);
+          
+          // Extract unique categories
+          const uniqueCats = Array.from(new Set(data.map((item: any) => item.category))).filter(Boolean) as string[];
+          setCategories(['All', ...uniqueCats]);
         }
       } catch (error) {
         console.error("Error fetching portfolio items", error);
@@ -61,15 +66,13 @@ export default function Portfolio() {
     fetchItems();
   }, []);
 
-  const filters = ['All', 'WordPress', 'Custom'];
-
   const filteredItems = filter === 'All' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === filter);
 
   return (
-    <section id="portfolio" className="py-24 bg-[#111219]">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="portfolio" className="py-[50px] md:py-24 bg-[#111219]">
+      <div className="container mx-auto px-[15px] md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -82,7 +85,7 @@ export default function Portfolio() {
           
           {/* Filters */}
           <div className="flex flex-wrap justify-center gap-3">
-            {filters.map((f) => (
+            {categories.map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
