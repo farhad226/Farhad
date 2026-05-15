@@ -40,7 +40,31 @@ export default function PortfolioAdmin() {
   const [loading, setLoading] = useState(true);
   
   const [isEditing, setIsEditing] = useState(false);
-  const [currentItem, setCurrentItem] = useState<{id?: string, title: string, category: string, image: string}>({ title: '', category: 'WordPress', image: '' });
+  const [currentItem, setCurrentItem] = useState<{id?: string, title: string, category: string, image: string, link?: string}>({ title: '', category: 'WordPress', image: '', link: '' });
+  const [uploading, setUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: 'image' | 'link') => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setUploading(true);
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+      const filePath = `public/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage.from('uploads').upload(filePath, file);
+      if (uploadError) throw uploadError;
+
+      const { data } = supabase.storage.from('uploads').getPublicUrl(filePath);
+      setCurrentItem(prev => ({ ...prev, [field]: data.publicUrl }));
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      alert("Failed to upload file. Check storage configuration.");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const fetchItems = async () => {
     try {
@@ -65,7 +89,8 @@ export default function PortfolioAdmin() {
         const { error } = await supabase.from('portfolio_items').update({
           title: currentItem.title,
           category: currentItem.category,
-          image: currentItem.image
+          image: currentItem.image,
+          link: currentItem.link
         }).eq('id', currentItem.id);
         if (error) throw error;
       } else {
@@ -73,12 +98,13 @@ export default function PortfolioAdmin() {
           title: currentItem.title,
           category: currentItem.category,
           image: currentItem.image,
+          link: currentItem.link,
           created_at: Date.now()
         }]);
         if (error) throw error;
       }
       setIsEditing(false);
-      setCurrentItem({ title: '', category: 'WordPress', image: '' });
+      setCurrentItem({ title: '', category: 'WordPress', image: '', link: '' });
       fetchItems();
     } catch (error) {
       console.error("Error saving specific portfolio item", error);
@@ -138,7 +164,7 @@ export default function PortfolioAdmin() {
           )}
           {!isEditing && (
             <button 
-              onClick={() => { setCurrentItem({ title: '', category: 'WordPress', image: '' }); setIsEditing(true); }}
+              onClick={() => { setCurrentItem({ title: '', category: 'WordPress', image: '', link: '' }); setIsEditing(true); }}
               className="bg-[#00a2ff] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#0081cc] transition-colors flex items-center gap-2"
             >
               <Plus size={16} /> Add New Item
@@ -163,10 +189,26 @@ export default function PortfolioAdmin() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-400 mb-1">Image URL</label>
-            <input required type="url" value={currentItem.image} onChange={e => setCurrentItem({...currentItem, image: e.target.value})} className="w-full bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff] focus:ring-1 focus:ring-[#00a2ff]" />
+            <div className="flex gap-2">
+              <input required type="url" value={currentItem.image} onChange={e => setCurrentItem({...currentItem, image: e.target.value})} className="flex-1 bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff] focus:ring-1 focus:ring-[#00a2ff]" />
+              <div className="relative">
+                <input type="file" onChange={e => handleFileUpload(e, 'image')} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer text-[#00a2ff] px-4 py-2" accept="image/*" />
+                <button type="button" className="bg-gray-800 text-white px-4 py-2 rounded-lg h-full hover:bg-gray-700 whitespace-nowrap">Upload</button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-400 mb-1">Project Link (or Upload File)</label>
+            <div className="flex gap-2">
+              <input type="url" placeholder="https://..." value={currentItem.link || ''} onChange={e => setCurrentItem({...currentItem, link: e.target.value})} className="flex-1 bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff] focus:ring-1 focus:ring-[#00a2ff]" />
+              <div className="relative">
+                <input type="file" onChange={e => handleFileUpload(e, 'link')} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                <button type="button" className="bg-gray-800 text-white px-4 py-2 rounded-lg h-full hover:bg-gray-700 whitespace-nowrap">Upload</button>
+              </div>
+            </div>
           </div>
           <div className="flex gap-3 pt-4">
-            <button type="submit" className="bg-[#00a2ff] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#0081cc]">Save</button>
+            <button type="submit" disabled={uploading} className="bg-[#00a2ff] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#0081cc] disabled:opacity-50">Save</button>
             <button type="button" onClick={() => setIsEditing(false)} className="border border-gray-700 text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-800">Cancel</button>
           </div>
         </form>

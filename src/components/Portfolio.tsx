@@ -123,9 +123,14 @@ export default function Portfolio() {
                   <div className="bg-[#00a2ff]/10 text-[#00a2ff] text-xs font-bold rounded-full px-3 py-1 uppercase tracking-wider w-max mb-3 border border-[#00a2ff]/20">
                     {item.category}
                   </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#00a2ff] transition-colors leading-tight">
+                  <h3 className="text-xl font-bold text-white group-hover:text-[#00a2ff] transition-colors leading-tight mb-2">
                     {item.title}
                   </h3>
+                  {item.link && (
+                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 group-hover:text-white transition-colors flex items-center gap-2 mt-2">
+                      View Project <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}

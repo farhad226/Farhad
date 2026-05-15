@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Download } from 'lucide-react';
+import { supabase } from '../supabase';
 import aboutImage from '../assets/images/regenerated_image_1778831992646.jpg';
 
 export default function About() {
+  const [resumeUrl, setResumeUrl] = useState('');
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const { data, error } = await supabase.from('site_info').select('resume_url').eq('id', 'contact').single();
+        if (error && error.code !== 'PGRST116') throw error;
+        if (data?.resume_url) {
+          setResumeUrl(data.resume_url);
+        }
+      } catch (error) {
+        console.error("Error fetching resume URL:", error);
+      }
+    };
+    fetchInfo();
+  }, []);
+
   return (
     <section id="about" className="py-24 bg-[#111219]">
       <div className="container mx-auto px-6 md:px-12">
@@ -63,10 +81,17 @@ export default function About() {
               </div>
             </div>
 
-            <button className="border border-white/20 hover:border-[#00a2ff] hover:bg-[#00a2ff]/10 text-white px-8 py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all">
-              <Download size={18} />
-              Download My Resume
-            </button>
+            {resumeUrl ? (
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="border border-white/20 hover:border-[#00a2ff] hover:bg-[#00a2ff]/10 text-white px-8 py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all">
+                <Download size={18} />
+                Download My Resume
+              </a>
+            ) : (
+              <button disabled className="border border-white/10 text-white/50 px-8 py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all cursor-not-allowed">
+                <Download size={18} />
+                Resume Not Available
+              </button>
+            )}
           </motion.div>
         </div>
       </div>
