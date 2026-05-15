@@ -32,7 +32,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="text-gray-500 text-sm">
-          &copy; {currentYear}. All rights reserved by Farhad Hossain Shovon.
+          &copy; {currentYear}. All rights reserved by Farhad Hossain.
         </div>
 
         {/* Socials */}

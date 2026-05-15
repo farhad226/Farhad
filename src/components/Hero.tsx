@@ -8,7 +8,7 @@ export default function Hero() {
     <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-24 pb-16">
       {/* Background large text */}
       <div className="absolute top-[40%] xl:top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0">
-        <h1 className="text-[20vw] md:text-[16vw] xl:text-[18vw] font-black text-transparent opacity-20 tracking-tighter uppercase leading-none" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.15)' }}>
+        <h1 className="text-[18vw] md:text-[14vw] xl:text-[16vw] font-black text-transparent opacity-20 tracking-tighter uppercase leading-none" style={{ WebkitTextStroke: '2px rgba(255,255,255,0.15)' }}>
           WordPress
         </h1>
       </div>

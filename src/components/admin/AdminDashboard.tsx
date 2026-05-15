@@ -5,12 +5,13 @@ import PortfolioAdmin from './PortfolioAdmin';
 import SkillsAdmin from './SkillsAdmin';
 import ServicesAdmin from './ServicesAdmin';
 import ContactAdmin from './ContactAdmin';
-import { LogOut, Home, Briefcase, Code, Settings, MessageSquare } from 'lucide-react';
+import AnalyticsAdmin from './AnalyticsAdmin';
+import { LogOut, Home, Briefcase, Code, Settings, MessageSquare, BarChart2 } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('portfolio');
+  const [activeTab, setActiveTab] = useState('analytics');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,6 +47,12 @@ export default function AdminDashboard() {
       <aside className="w-full md:w-64 bg-[#13141c] border-r border-gray-800 p-6 flex flex-col">
         <h2 className="text-2xl font-bold font-heading mb-8">Admin Dashboard</h2>
         <nav className="flex-1 space-y-2">
+          <button 
+            onClick={() => setActiveTab('analytics')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'analytics' ? 'bg-[#00a2ff] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+          >
+            <BarChart2 size={18} /> Analytics
+          </button>
           <button 
             onClick={() => setActiveTab('portfolio')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'portfolio' ? 'bg-[#00a2ff] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
@@ -89,6 +96,7 @@ export default function AdminDashboard() {
       </aside>
       
       <main className="flex-1 p-6 md:p-10 overflow-y-auto">
+        {activeTab === 'analytics' && <AnalyticsAdmin />}
         {activeTab === 'portfolio' && <PortfolioAdmin />}
         {activeTab === 'skills' && <SkillsAdmin />}
         {activeTab === 'services' && <ServicesAdmin />}

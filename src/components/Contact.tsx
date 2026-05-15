@@ -155,7 +155,13 @@ export default function Contact() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
                 <div className="relative group">
                   <input 
                     type="text" 
@@ -164,7 +170,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your Name" 
-                    className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
+                    className="w-full bg-[#0a0a0f]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff] focus:ring-2 focus:ring-[#00a2ff]/30 transition-all duration-300 hover:border-[#00a2ff]/50 shadow-inner group-hover:bg-[#0a0a0f]/70"
                   />
                 </div>
                 <div className="relative group">
@@ -175,12 +181,18 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your Email" 
-                    className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
+                    className="w-full bg-[#0a0a0f]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff] focus:ring-2 focus:ring-[#00a2ff]/30 transition-all duration-300 hover:border-[#00a2ff]/50 shadow-inner group-hover:bg-[#0a0a0f]/70"
                   />
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
                 <div className="relative group">
                   <input 
                     type="tel" 
@@ -189,7 +201,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your Phone Number" 
-                    className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
+                    className="w-full bg-[#0a0a0f]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff] focus:ring-2 focus:ring-[#00a2ff]/30 transition-all duration-300 hover:border-[#00a2ff]/50 shadow-inner group-hover:bg-[#0a0a0f]/70"
                   />
                 </div>
                 <div className="relative group">
@@ -200,12 +212,18 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Subject" 
-                    className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
+                    className="w-full bg-[#0a0a0f]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff] focus:ring-2 focus:ring-[#00a2ff]/30 transition-all duration-300 hover:border-[#00a2ff]/50 shadow-inner group-hover:bg-[#0a0a0f]/70"
                   />
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="relative group">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="relative group"
+              >
                 <textarea 
                   name="message"
                   value={formData.message}
@@ -213,33 +231,49 @@ export default function Contact() {
                   required
                   rows={5}
                   placeholder="How can I help you?" 
-                  className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20 resize-none"
+                  className="w-full bg-[#0a0a0f]/50 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff] focus:ring-2 focus:ring-[#00a2ff]/30 transition-all duration-300 hover:border-[#00a2ff]/50 shadow-inner resize-none group-hover:bg-[#0a0a0f]/70"
                 ></textarea>
-              </div>
+              </motion.div>
 
               {submitStatus === 'success' && (
-                <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400 text-sm flex items-center justify-center">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 text-sm flex items-center justify-center font-medium"
+                >
                   Message sent successfully!
-                </div>
+                </motion.div>
               )}
               {submitStatus === 'error' && (
-                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400 text-sm flex items-center justify-center text-center">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm flex items-center justify-center text-center font-medium"
+                >
                   Failed to send message. FormSubmit.co might be temporarily down. Please try again later.
-                </div>
+                </motion.div>
               )}
 
-              <button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="group relative w-full bg-transparent text-white py-4 rounded-2xl font-bold text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(0,162,255,0.3)] hover:-translate-y-1 border border-[#00a2ff]/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:-translate-y-0 disabled:hover:shadow-none"
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                viewport={{ once: true }}
               >
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#00a2ff] to-[#007acc] transition-opacity duration-300"></div>
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#007acc] to-[#00a2ff] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <span className="relative z-10 flex items-center justify-center gap-2 transition-colors duration-300">
-                  {isSubmitting ? 'Sending...' : 'Send Message'} 
-                  <Send size={18} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                </span>
-              </button>
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="group relative w-full bg-gradient-to-r from-[#00a2ff] to-[#007acc] text-white py-4 rounded-xl font-bold text-lg overflow-hidden transition-all shadow-[0_4px_20px_rgba(0,162,255,0.3)] hover:shadow-[0_8px_30px_rgba(0,162,255,0.5)] disabled:opacity-70 disabled:cursor-not-allowed border border-transparent"
+                >
+                  <div className="absolute inset-0 w-full h-full bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+                  <span className="relative z-10 flex items-center justify-center gap-2 transition-transform duration-300">
+                    {isSubmitting ? 'Sending...' : 'Send Message'} 
+                    <Send size={18} className={`transform transition-all duration-300 ${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1 group-hover:-translate-y-1'}`} />
+                  </span>
+                </motion.button>
+              </motion.div>
             </form>
           </motion.div>
 
