@@ -73,7 +73,7 @@ export default function Experience() {
                       <Calendar size={14} />
                       <span>{item.period}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-1">{item.role}</h3>
+                    <h3 className="text-base md:text-lg font-bold text-white mb-1">{item.role}</h3>
                     {item.company_url ? (
                       <a 
                         href={item.company_url} 

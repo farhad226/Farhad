@@ -164,7 +164,7 @@ export default function ExperienceAdmin() {
           <div key={item.id} className="bg-[#15161e] border border-gray-800 p-6 rounded-xl group hover:border-[#00a2ff]/30 transition-all">
             <div className="flex justify-between items-start">
               <div>
-                <h4 className="text-white font-bold text-lg">{item.role}</h4>
+                <h4 className="text-white font-bold text-base">{item.role}</h4>
                 <p className="text-[#00a2ff] font-medium">{item.company}</p>
                 <p className="text-gray-500 text-sm mb-4">{item.period}</p>
                 <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
