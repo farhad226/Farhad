@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import About from './components/About';
+import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Portfolio from './components/Portfolio';
 import Testimonials from './components/Testimonials';
@@ -28,6 +29,7 @@ function MainLayout() {
         <Hero />
         <Services />
         <About />
+        <Experience />
         <Skills />
         <Portfolio />
         <Testimonials />

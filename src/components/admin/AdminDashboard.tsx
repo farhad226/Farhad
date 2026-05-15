@@ -6,7 +6,8 @@ import SkillsAdmin from './SkillsAdmin';
 import ServicesAdmin from './ServicesAdmin';
 import ContactAdmin from './ContactAdmin';
 import AnalyticsAdmin from './AnalyticsAdmin';
-import { LogOut, Home, Briefcase, Code, Settings, MessageSquare, BarChart2 } from 'lucide-react';
+import ExperienceAdmin from './ExperienceAdmin';
+import { LogOut, Home, Briefcase, Code, Settings, MessageSquare, BarChart2, Laptop } from 'lucide-react';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<any>(null);
@@ -60,6 +61,12 @@ export default function AdminDashboard() {
             <Briefcase size={18} /> Portfolio Items
           </button>
           <button 
+            onClick={() => setActiveTab('experience')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'experience' ? 'bg-[#00a2ff] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+          >
+            <Laptop size={18} /> Experience
+          </button>
+          <button 
             onClick={() => setActiveTab('skills')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'skills' ? 'bg-[#00a2ff] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
@@ -98,6 +105,7 @@ export default function AdminDashboard() {
       <main className="flex-1 p-6 md:p-10 overflow-y-auto">
         {activeTab === 'analytics' && <AnalyticsAdmin />}
         {activeTab === 'portfolio' && <PortfolioAdmin />}
+        {activeTab === 'experience' && <ExperienceAdmin />}
         {activeTab === 'skills' && <SkillsAdmin />}
         {activeTab === 'services' && <ServicesAdmin />}
         {activeTab === 'contact' && <ContactAdmin />}
