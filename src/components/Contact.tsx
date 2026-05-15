@@ -13,6 +13,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: ''
   });
@@ -61,6 +62,7 @@ export default function Contact() {
         body: JSON.stringify({
             name: formData.name,
             email: formData.email,
+            phone: formData.phone,
             subject: formData.subject,
             message: formData.message,
             _template: 'box',
@@ -73,7 +75,7 @@ export default function Contact() {
       }
       
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
       console.error("Error sending message:", error);
@@ -178,16 +180,29 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="relative group">
-                <input 
-                  type="text" 
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  placeholder="Subject" 
-                  className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="relative group">
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your Phone Number" 
+                    className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
+                  />
+                </div>
+                <div className="relative group">
+                  <input 
+                    type="text" 
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    placeholder="Subject" 
+                    className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
+                  />
+                </div>
               </div>
 
               <div className="relative group">
