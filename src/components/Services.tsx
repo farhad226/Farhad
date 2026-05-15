@@ -67,7 +67,7 @@ export default function Services() {
               <div className="w-14 h-14 bg-[#00a2ff]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#00a2ff]/20 transition-colors">
                 {renderIcon(service.icon)}
               </div>
-              <h3 className="text-xl font-semibold mb-4 text-white line-clamp-2">{service.title}</h3>
+              <h3 className="text-[15px] md:text-xl font-semibold mb-4 text-white line-clamp-2">{service.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
