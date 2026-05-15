@@ -68,9 +68,9 @@ export default function Experience() {
               >
                 {/* Content Side */}
                 <div className={`w-full md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12 md:text-right text-left' : 'md:pl-12 md:text-left text-left'}`}>
-                  <div className="bg-[#111219] border border-white/5 p-6 rounded-2xl hover:border-[#00a2ff]/30 transition-all group">
-                    <div className={`flex items-center gap-2 mb-2 text-[#00a2ff] text-sm font-medium ${idx % 2 === 0 ? 'md:justify-end justify-start' : 'justify-start'}`}>
-                      <Calendar size={14} />
+                  <div className="bg-[#111219] border border-white/5 p-4 md:p-6 rounded-2xl hover:border-[#00a2ff]/30 transition-all group">
+                    <div className={`flex items-center gap-2 mb-2 text-[#00a2ff] text-[10px] md:text-sm font-medium ${idx % 2 === 0 ? 'md:justify-end justify-start' : 'justify-start'}`}>
+                      <Calendar size={12} />
                       <span>{item.period}</span>
                     </div>
                     <h3 className="text-sm md:text-lg font-bold text-white mb-1 leading-snug">{item.role}</h3>

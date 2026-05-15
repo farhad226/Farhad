@@ -51,7 +51,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="relative z-20 text-center -mt-16 sm:-mt-24 md:-mt-36 lg:-mt-48 w-full px-4"
           >
-            <h2 className="text-[12vw] sm:text-[15vw] md:text-[13vw] lg:text-[12vw] font-black font-heading text-white leading-[0.85] tracking-tight drop-shadow-2xl">
+            <h2 className="text-[10vw] sm:text-[12vw] md:text-[10vw] lg:text-[9vw] font-black font-heading text-white leading-[0.85] tracking-tight drop-shadow-2xl">
               <span className="block drop-shadow-md">& Web</span>
               <span className="block drop-shadow-md">Developer</span>
             </h2>

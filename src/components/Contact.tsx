@@ -108,13 +108,14 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.6 }}
+            className="w-full"
           >
-            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-xs md:text-sm mb-3">Contact Me</p>
-            <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">
+            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-2">Contact Me</p>
+            <h2 className="text-2xl md:text-5xl font-bold font-heading mb-4 md:mb-6 leading-tight">
               Let's Create<br />
               Extraordinary Together
             </h2>
-            <p className="text-gray-400 mb-8 md:mb-12 max-w-md leading-relaxed text-sm md:text-base">
+            <p className="text-gray-400 mb-6 md:mb-12 max-w-md leading-relaxed text-xs md:text-base">
               Ready to start your next project? Get in touch and let's discuss how we can bring your vision to life.
             </p>
 
