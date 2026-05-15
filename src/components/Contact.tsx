@@ -51,16 +51,26 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const { error } = await supabase.from('messages').insert([
-        {
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message
-        }
-      ]);
+      // Using FormSubmit.co AJAX endpoint to send directly to email
+      const response = await fetch(`https://formsubmit.co/ajax/${contactInfo.email}`, {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            _template: 'box',
+            _subject: 'New message from portfolio!'
+        })
+      });
 
-      if (error) throw error;
+      if (!response.ok) {
+        throw new Error('Form submission failed. The service might be down.');
+      }
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -199,7 +209,7 @@ export default function Contact() {
               )}
               {submitStatus === 'error' && (
                 <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400 text-sm flex items-center justify-center text-center">
-                  Failed to send message. Make sure you've run the SQL code to create the messages table in Supabase.
+                  Failed to send message. FormSubmit.co might be temporarily down. Please try again later.
                 </div>
               )}
 

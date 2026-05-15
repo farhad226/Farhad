@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Instagram, Send, Linkedin, Github, Menu, X, Facebook } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logoImage from '../assets/images/regenerated_image_1778831989911.png';
+import { WhatsAppFilled } from './WhatsAppIcon';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,6 +30,7 @@ export default function Navbar() {
     { icon: <Instagram size={18} />, href: 'https://www.instagram.com/farhad.hossain000?igsh=eGoyeDBzNHhoNXF5' },
     { icon: <Send size={18} />, href: 'https://t.me/Farhad_Hossain_WP' },
     { icon: <Linkedin size={18} />, href: 'https://www.linkedin.com/in/farhad-hossain-162b252a4?utm_source=share_via&utm_content=profile&utm_medium=member_android' },
+    { icon: <WhatsAppFilled size={18} />, href: 'https://wa.me/8801604118643' },
   ];
 
   return (
