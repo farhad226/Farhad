@@ -23,9 +23,9 @@ function MainLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white font-sans selection:bg-[#00a2ff] selection:text-white">
+    <div className="min-h-screen bg-[#0a0a0f] text-white font-sans selection:bg-[#00a2ff] selection:text-white overflow-x-hidden">
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden">
         <Hero />
         <Services />
         <About />

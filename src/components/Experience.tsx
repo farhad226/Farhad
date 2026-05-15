@@ -67,26 +67,26 @@ export default function Experience() {
                 className={`relative flex flex-col md:flex-row items-center ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-0`}
               >
                 {/* Content Side */}
-                <div className={`w-full md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
+                <div className={`w-full md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12 md:text-right text-left' : 'md:pl-12 md:text-left text-left'}`}>
                   <div className="bg-[#111219] border border-white/5 p-6 rounded-2xl hover:border-[#00a2ff]/30 transition-all group">
-                    <div className="flex items-center gap-2 mb-2 text-[#00a2ff] text-sm font-medium justify-start md:justify-normal" style={{ justifyContent: idx % 2 === 0 ? 'flex-end' : 'flex-start' }}>
+                    <div className={`flex items-center gap-2 mb-2 text-[#00a2ff] text-sm font-medium ${idx % 2 === 0 ? 'md:justify-end justify-start' : 'justify-start'}`}>
                       <Calendar size={14} />
                       <span>{item.period}</span>
                     </div>
-                    <h3 className="text-base md:text-lg font-bold text-white mb-1">{item.role}</h3>
+                    <h3 className="text-sm md:text-lg font-bold text-white mb-1 leading-snug">{item.role}</h3>
                     {item.company_url ? (
                       <a 
                         href={item.company_url} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="text-[#00a2ff] font-medium mb-4 hover:underline inline-block"
+                        className="text-[#00a2ff] text-sm md:text-base font-medium mb-4 hover:underline inline-block"
                       >
                         {item.company}
                       </a>
                     ) : (
-                      <h4 className="text-gray-400 font-medium mb-4">{item.company}</h4>
+                      <h4 className="text-gray-400 text-sm md:text-base font-medium mb-4">{item.company}</h4>
                     )}
-                    <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-gray-500 text-xs md:text-sm leading-relaxed">{item.description}</p>
                   </div>
                 </div>
 

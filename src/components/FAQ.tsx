@@ -58,12 +58,12 @@ export default function FAQ() {
             >
               <button
                 onClick={() => toggleFaq(index)}
-                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                className="w-full flex items-center justify-between p-4 md:p-6 text-left focus:outline-none"
               >
-                <span className="font-semibold text-lg pr-8">{faq.question}</span>
+                <span className="font-semibold text-base md:text-lg pr-4 md:pr-8 leading-tight">{faq.question}</span>
                 <ChevronDown 
                   className={`flex-shrink-0 text-[#00a2ff] transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} 
-                  size={20} 
+                  size={18} 
                 />
               </button>
               <AnimatePresence>
@@ -74,7 +74,7 @@ export default function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="p-6 pt-0 text-gray-400 leading-relaxed border-t border-gray-800/50 mt-2">
+                    <div className="p-4 md:p-6 pt-0 text-gray-400 text-sm md:text-base leading-relaxed border-t border-gray-800/50 mt-1 md:mt-2">
                       {faq.answer}
                     </div>
                   </motion.div>

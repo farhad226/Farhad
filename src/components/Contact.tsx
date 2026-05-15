@@ -95,12 +95,12 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-[50px] md:py-24 bg-[#111219] relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-24 bg-[#111219] relative overflow-hidden">
       {/* Decorative blurred background blob */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#00a2ff]/10 blur-[120px] rounded-full pointer-events-none"></div>
 
-      <div className="container mx-auto px-[15px] md:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <div className="container mx-auto px-4 md:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
           
           {/* Left Side: Info */}
           <motion.div
@@ -109,43 +109,43 @@ export default function Contact() {
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-sm mb-3">Contact Me</p>
-            <h2 className="text-4xl md:text-5xl font-bold font-heading mb-6 leading-tight">
+            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-xs md:text-sm mb-3">Contact Me</p>
+            <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">
               Let's Create<br />
               Extraordinary Together
             </h2>
-            <p className="text-gray-400 mb-12 max-w-md leading-relaxed">
+            <p className="text-gray-400 mb-8 md:mb-12 max-w-md leading-relaxed text-sm md:text-base">
               Ready to start your next project? Get in touch and let's discuss how we can bring your vision to life.
             </p>
 
-            <div className="space-y-8">
-              <div className="flex items-start gap-5 group">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#00a2ff]/20 to-transparent rounded-2xl flex items-center justify-center shrink-0 border border-[#00a2ff]/30 group-hover:border-[#00a2ff]/60 transition-colors shadow-[0_0_20px_rgba(0,162,255,0.1)]">
-                  <Mail className="text-[#00a2ff]" size={24} />
+            <div className="space-y-6 md:space-y-8 mb-10 lg:mb-0">
+              <div className="flex items-start gap-4 md:gap-5 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#00a2ff]/20 to-transparent rounded-2xl flex items-center justify-center shrink-0 border border-[#00a2ff]/30 group-hover:border-[#00a2ff]/60 transition-colors shadow-[0_0_20px_rgba(0,162,255,0.1)]">
+                  <Mail className="text-[#00a2ff]" size={20} />
                 </div>
-                <div className="pt-1">
-                  <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-1">Email Me</p>
-                  <p className="font-bold text-base md:text-lg text-white group-hover:text-[#00a2ff] transition-colors break-all">{contactInfo.email}</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start gap-5 group">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#00a2ff]/20 to-transparent rounded-2xl flex items-center justify-center shrink-0 border border-[#00a2ff]/30 group-hover:border-[#00a2ff]/60 transition-colors shadow-[0_0_20px_rgba(0,162,255,0.1)]">
-                  <Phone className="text-[#00a2ff]" size={24} />
-                </div>
-                <div className="pt-1">
-                  <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-1">Call Me</p>
-                  <p className="font-bold text-base md:text-lg text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.phone}</p>
+                <div className="pt-1 overflow-hidden">
+                  <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest font-semibold mb-1">Email Me</p>
+                  <p className="font-bold text-sm md:text-lg text-white group-hover:text-[#00a2ff] transition-colors break-all">{contactInfo.email}</p>
                 </div>
               </div>
               
-              <div className="flex items-start gap-5 group">
-                <div className="w-14 h-14 bg-gradient-to-br from-[#00a2ff]/20 to-transparent rounded-2xl flex items-center justify-center shrink-0 border border-[#00a2ff]/30 group-hover:border-[#00a2ff]/60 transition-colors shadow-[0_0_20px_rgba(0,162,255,0.1)]">
-                  <MapPin className="text-[#00a2ff]" size={24} />
+              <div className="flex items-start gap-4 md:gap-5 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#00a2ff]/20 to-transparent rounded-2xl flex items-center justify-center shrink-0 border border-[#00a2ff]/30 group-hover:border-[#00a2ff]/60 transition-colors shadow-[0_0_20px_rgba(0,162,255,0.1)]">
+                  <Phone className="text-[#00a2ff]" size={20} />
                 </div>
                 <div className="pt-1">
-                  <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-1">Location</p>
-                  <p className="font-bold text-base md:text-lg text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.location}</p>
+                  <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest font-semibold mb-1">Call Me</p>
+                  <p className="font-bold text-sm md:text-lg text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.phone}</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 md:gap-5 group">
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#00a2ff]/20 to-transparent rounded-2xl flex items-center justify-center shrink-0 border border-[#00a2ff]/30 group-hover:border-[#00a2ff]/60 transition-colors shadow-[0_0_20px_rgba(0,162,255,0.1)]">
+                  <MapPin className="text-[#00a2ff]" size={20} />
+                </div>
+                <div className="pt-1">
+                  <p className="text-gray-500 text-[10px] md:text-xs uppercase tracking-widest font-semibold mb-1">Location</p>
+                  <p className="font-bold text-sm md:text-lg text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.location}</p>
                 </div>
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative bg-[#13141c]/50 backdrop-blur-xl border border-white/5 p-8 md:p-12 rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
+            className="relative bg-[#13141c]/50 backdrop-blur-xl border border-white/5 p-6 md:p-12 rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.4)] overflow-hidden"
           >
             {/* Subtle glow inside the form card */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#00a2ff]/10 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
