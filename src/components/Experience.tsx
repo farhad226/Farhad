@@ -37,16 +37,16 @@ export default function Experience() {
   }, []);
 
   return (
-    <section id="experience" className="py-[50px] md:py-24 bg-[#0a0a0f]">
-      <div className="container mx-auto px-[15px] md:px-12">
+    <section id="experience" className="py-12 md:py-24 bg-[#0a0a0f]">
+      <div className="container mx-auto px-4 md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h4 className="text-[#00a2ff] font-bold tracking-widest uppercase text-sm mb-3">Journey</h4>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00a2ff] to-[#007acc]">Experience</span></h2>
+          <h4 className="text-[#00a2ff] font-bold tracking-widest uppercase text-[10px] md:text-sm mb-3">Journey</h4>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00a2ff] to-[#007acc]">Experience</span></h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             A timeline of my professional journey and the companies I've had the pleasure of working with.
           </p>

@@ -23,8 +23,8 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-[50px] md:py-24 bg-[#111219]">
-      <div className="container mx-auto px-[15px] md:px-12">
+    <section id="about" className="py-12 md:py-24 bg-[#111219]">
+      <div className="container mx-auto px-4 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image Side */}
           <motion.div 
@@ -62,8 +62,8 @@ export default function About() {
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-sm mb-3">About Me</p>
-            <h2 className="text-3xl md:text-5xl font-bold font-heading mb-6 leading-tight">
+            <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">About Me</p>
+            <h2 className="text-2xl md:text-5xl font-bold font-heading mb-6 leading-tight">
               Crafting Digital Experiences with Passion
             </h2>
             <p className="text-gray-400 mb-8 leading-relaxed">

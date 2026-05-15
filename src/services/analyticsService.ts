@@ -111,3 +111,18 @@ export const getVisitorStats = async () => {
     return null;
   }
 };
+
+export const resetAnalytics = async () => {
+  try {
+    const { error } = await supabase
+      .from('page_visits')
+      .delete()
+      .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all rows
+      
+    if (error) throw error;
+    return true;
+  } catch (err) {
+    console.error('Failed to reset analytics:', err);
+    return false;
+  }
+};

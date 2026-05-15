@@ -71,8 +71,8 @@ export default function Portfolio() {
     : portfolioItems.filter(item => item.category === filter);
 
   return (
-    <section id="portfolio" className="py-[50px] md:py-24 bg-[#111219]">
-      <div className="container mx-auto px-[15px] md:px-12">
+    <section id="portfolio" className="py-12 md:py-24 bg-[#111219]">
+      <div className="container mx-auto px-4 md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -80,8 +80,8 @@ export default function Portfolio() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-sm mb-3">Latest Portfolio</p>
-          <h2 className="text-3xl md:text-5xl font-bold font-heading mb-8">Turning Ideas Into Digital Reality</h2>
+          <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">Latest Portfolio</p>
+          <h2 className="text-2xl md:text-5xl font-bold font-heading mb-8">Turning Ideas Into Digital Reality</h2>
           
           {/* Filters */}
           <div className="flex flex-wrap justify-center gap-3">

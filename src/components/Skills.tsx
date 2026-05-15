@@ -73,8 +73,8 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="py-[50px] md:py-24 bg-[#0a0a0f]">
-      <div className="container mx-auto px-[15px] md:px-12">
+    <section id="skills" className="py-12 md:py-24 bg-[#0a0a0f]">
+      <div className="container mx-auto px-4 md:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -82,8 +82,8 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-sm mb-3">My Skills</p>
-          <h2 className="text-3xl md:text-5xl font-bold font-heading max-w-2xl">
+          <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">My Skills</p>
+          <h2 className="text-2xl md:text-5xl font-bold font-heading max-w-2xl">
             Expertise in Modern Web Technologies
           </h2>
         </motion.div>
