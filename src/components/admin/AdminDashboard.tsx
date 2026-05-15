@@ -64,7 +64,7 @@ export default function AdminDashboard() {
             onClick={() => setActiveTab('experience')}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === 'experience' ? 'bg-[#00a2ff] text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
           >
-            <Laptop size={18} /> Experience
+            <Briefcase size={18} /> Experience
           </button>
           <button 
             onClick={() => setActiveTab('skills')}

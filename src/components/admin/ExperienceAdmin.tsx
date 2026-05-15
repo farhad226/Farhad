@@ -51,9 +51,13 @@ export default function ExperienceAdmin() {
       setIsEditing(false);
       setCurrentItem({ company: '', company_url: '', role: '', period: '', description: '' });
       fetchExperience();
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error saving experience", error);
-      alert("Error saving. Check console.");
+      if (error?.message?.includes('column "company_url" does not exist')) {
+        alert("Error: Database needs update. Please run the provided SQL in your Supabase SQL Editor to add the 'company_url' column.");
+      } else {
+        alert("Error saving: " + (error?.message || "Unknown error"));
+      }
     }
   };
 

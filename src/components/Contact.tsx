@@ -52,26 +52,26 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      // Using FormSubmit.co AJAX endpoint to send directly to email
-      const response = await fetch(`https://formsubmit.co/ajax/${contactInfo.email}`, {
+      // 1. Save to Supabase (Reliable storage backup)
+      const { error: supabaseError } = await supabase.from('messages').insert([{
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      }]);
+
+      if (supabaseError) throw supabaseError;
+
+      // 2. Send email via our Backend API
+      const response = await fetch('/api/contact', {
         method: "POST",
-        headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            subject: formData.subject,
-            message: formData.message,
-            _template: 'box',
-            _subject: 'New message from portfolio!'
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
 
       if (!response.ok) {
-        throw new Error('Form submission failed. The service might be down.');
+        throw new Error('Backend email failed');
       }
       
       setSubmitStatus('success');
@@ -250,7 +250,7 @@ export default function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm flex items-center justify-center text-center font-medium"
                 >
-                  Failed to send message. FormSubmit.co might be temporarily down. Please try again later.
+                  Failed to send message. Please try again later or contact me directly via email.
                 </motion.div>
               )}
 
