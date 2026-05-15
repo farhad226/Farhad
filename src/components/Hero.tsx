@@ -89,12 +89,12 @@ export default function Hero() {
           whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: false }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex lg:hidden flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4 mt-8 sm:mt-10 z-30 relative w-full px-4"
+          className="flex lg:hidden flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-4 mt-8 sm:mt-10 z-30 relative w-full px-8"
         >
-          <a href="#contact" className="w-full sm:w-auto bg-[#00a2ff] text-white px-8 py-3.5 rounded-full font-semibold inline-flex justify-center items-center gap-2 hover:bg-[#0081cc] transition-colors text-base shadow-[0_0_20px_rgba(0,162,255,0.4)]">
-            Hire Me Now <ArrowUpRight size={18} />
+          <a href="#contact" className="w-full sm:w-auto bg-[#00a2ff] text-white px-6 py-3 rounded-full font-semibold inline-flex justify-center items-center gap-2 hover:bg-[#0081cc] transition-colors text-sm shadow-[0_0_20px_rgba(0,162,255,0.4)]">
+            Hire Me Now <ArrowUpRight size={16} />
           </a>
-          <a href="#portfolio" className="w-full sm:w-auto bg-[#13141c] border border-gray-700 text-white px-8 py-3.5 rounded-full text-center font-semibold hover:border-gray-500 transition-all text-base">
+          <a href="#portfolio" className="w-full sm:w-auto bg-[#13141c] border border-gray-700 text-white px-6 py-3 rounded-full text-center font-semibold hover:border-gray-500 transition-all text-sm">
             View My Work
           </a>
         </motion.div>

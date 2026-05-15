@@ -296,7 +296,7 @@ export default function Testimonials() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={loadMore}
-              className="group relative px-8 py-3 bg-[#0a0a0f] border border-[#00a2ff]/30 rounded-full text-white font-bold transition-all hover:border-[#00a2ff] hover:shadow-[0_0_20px_rgba(0,162,255,0.2)] flex items-center gap-2 mx-auto"
+              className="group relative px-6 py-2.5 md:px-8 md:py-3 bg-[#0a0a0f] border border-[#00a2ff]/30 rounded-full text-white font-bold transition-all hover:border-[#00a2ff] hover:shadow-[0_0_20px_rgba(0,162,255,0.2)] flex items-center gap-2 mx-auto text-sm md:text-base"
             >
               <span>Load More Reviews</span>
               <ChevronDown className="group-hover:translate-y-1 transition-transform" size={18} />

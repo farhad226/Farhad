@@ -275,7 +275,7 @@ export default function Contact() {
                   whileTap={{ scale: 0.98 }}
                   type="submit" 
                   disabled={isSubmitting}
-                  className="group relative w-full bg-gradient-to-r from-[#00a2ff] to-[#007acc] text-white py-4 rounded-xl font-bold text-lg overflow-hidden transition-all shadow-[0_4px_20px_rgba(0,162,255,0.3)] hover:shadow-[0_8px_30px_rgba(0,162,255,0.5)] disabled:opacity-70 disabled:cursor-not-allowed border border-transparent"
+                  className="group relative w-full bg-gradient-to-r from-[#00a2ff] to-[#007acc] text-white py-3.5 md:py-4 rounded-xl font-bold text-base md:text-lg overflow-hidden transition-all shadow-[0_4px_20px_rgba(0,162,255,0.3)] hover:shadow-[0_8px_30px_rgba(0,162,255,0.5)] disabled:opacity-70 disabled:cursor-not-allowed border border-transparent"
                 >
                   <div className="absolute inset-0 w-full h-full bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
                   <span className="relative z-10 flex items-center justify-center gap-2 transition-transform duration-300">

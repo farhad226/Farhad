@@ -46,7 +46,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h4 className="text-[#00a2ff] font-bold tracking-widest uppercase text-[10px] md:text-sm mb-3">Journey</h4>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00a2ff] to-[#007acc]">Experience</span></h2>
+          <h2 className="text-[22px] md:text-5xl font-bold text-white mb-6">Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00a2ff] to-[#007acc]">Experience</span></h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             A timeline of my professional journey and the companies I've had the pleasure of working with.
           </p>

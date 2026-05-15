@@ -81,7 +81,7 @@ export default function Portfolio() {
           className="text-center mb-12"
         >
           <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">Latest Portfolio</p>
-          <h2 className="text-2xl md:text-5xl font-bold font-heading mb-8">Turning Ideas Into Digital Reality</h2>
+          <h2 className="text-[22px] md:text-5xl font-bold font-heading mb-8">Turning Ideas Into Digital Reality</h2>
           
           {/* Filters */}
           <div className="flex flex-wrap justify-center gap-3">

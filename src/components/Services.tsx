@@ -48,7 +48,7 @@ export default function Services() {
           className="text-center mb-16"
         >
           <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">What I Do</p>
-          <h2 className="text-2xl md:text-5xl font-bold font-heading mb-4">Premium Services For You</h2>
+          <h2 className="text-[22px] md:text-5xl font-bold font-heading mb-4">Premium Services For You</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             I help businesses grow by creating stunning, high-performing websites that stand out in the digital landscape.
           </p>

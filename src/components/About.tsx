@@ -63,7 +63,7 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">About Me</p>
-            <h2 className="text-2xl md:text-5xl font-bold font-heading mb-6 leading-tight">
+            <h2 className="text-[22px] md:text-5xl font-bold font-heading mb-6 leading-tight">
               Crafting Digital Experiences with Passion
             </h2>
             <p className="text-gray-400 mb-8 leading-relaxed">
@@ -82,12 +82,12 @@ export default function About() {
             </div>
 
             {resumeUrl ? (
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="border border-white/20 hover:border-[#00a2ff] hover:bg-[#00a2ff]/10 text-white px-8 py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all">
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="border border-white/20 hover:border-[#00a2ff] hover:bg-[#00a2ff]/10 text-white px-6 py-2.5 md:px-8 md:py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all text-sm md:text-base">
                 <Download size={18} />
                 Download My Resume
               </a>
             ) : (
-              <button disabled className="border border-white/10 text-white/50 px-8 py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all cursor-not-allowed">
+              <button disabled className="border border-white/10 text-white/50 px-6 py-2.5 md:px-8 md:py-3.5 rounded-full font-medium inline-flex items-center gap-3 transition-all cursor-not-allowed text-sm md:text-base">
                 <Download size={18} />
                 Resume Not Available
               </button>
