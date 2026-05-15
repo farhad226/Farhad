@@ -9,6 +9,15 @@ export default function Contact() {
     phone: '01604118643',
     location: 'Dhaka, Bangladesh'
   });
+  
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     const fetchContactInfo = async () => {
@@ -30,6 +39,39 @@ export default function Contact() {
     };
     fetchContactInfo();
   }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const { error } = await supabase.from('messages').insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        }
+      ]);
+
+      if (error) throw error;
+      
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 bg-[#111219] relative overflow-hidden">
@@ -99,16 +141,15 @@ export default function Contact() {
             {/* Subtle glow inside the form card */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#00a2ff]/10 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
 
-            <form action={`https://formsubmit.co/${contactInfo.email}`} method="POST" className="space-y-6">
-              {/* Optional: Configuration for formsubmit */}
-              <input type="hidden" name="_subject" value="New submission from your portfolio!" />
-              <input type="hidden" name="_template" value="box" />
+            <form onSubmit={handleSubmit} className="space-y-6">
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="relative group">
                   <input 
                     type="text" 
                     name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     placeholder="Your Name" 
                     className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
@@ -118,6 +159,8 @@ export default function Contact() {
                   <input 
                     type="email" 
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     placeholder="Your Email" 
                     className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
@@ -129,6 +172,8 @@ export default function Contact() {
                 <input 
                   type="text" 
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   required
                   placeholder="Subject" 
                   className="w-full bg-[#0a0a0f]/40 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-[#00a2ff]/80 focus:bg-[#0a0a0f]/80 focus:ring-1 focus:ring-[#00a2ff]/50 transition-all duration-300 hover:border-white/20"
@@ -138,6 +183,8 @@ export default function Contact() {
               <div className="relative group">
                 <textarea 
                   name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                   rows={5}
                   placeholder="How can I help you?" 
@@ -145,14 +192,26 @@ export default function Contact() {
                 ></textarea>
               </div>
 
+              {submitStatus === 'success' && (
+                <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-2xl text-green-400 text-sm flex items-center justify-center">
+                  Message sent successfully!
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-400 text-sm flex items-center justify-center text-center">
+                  Failed to send message. Make sure you've run the SQL code to create the messages table in Supabase.
+                </div>
+              )}
+
               <button 
                 type="submit" 
-                className="group relative w-full bg-transparent text-white py-4 rounded-2xl font-bold text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(0,162,255,0.3)] hover:-translate-y-1 border border-[#00a2ff]/50"
+                disabled={isSubmitting}
+                className="group relative w-full bg-transparent text-white py-4 rounded-2xl font-bold text-lg overflow-hidden transition-all hover:shadow-[0_0_40px_rgba(0,162,255,0.3)] hover:-translate-y-1 border border-[#00a2ff]/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:-translate-y-0 disabled:hover:shadow-none"
               >
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#00a2ff] to-[#007acc] transition-opacity duration-300"></div>
                 <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#007acc] to-[#00a2ff] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <span className="relative z-10 flex items-center justify-center gap-2 transition-colors duration-300">
-                  Send Message 
+                  {isSubmitting ? 'Sending...' : 'Send Message'} 
                   <Send size={18} className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                 </span>
               </button>
