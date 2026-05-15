@@ -72,11 +72,11 @@ export default function About() {
 
             <div className="flex flex-wrap gap-12 mb-10">
               <div>
-                <h3 className="text-[15px] md:text-4xl font-bold text-white mb-2">4+</h3>
+                <h3 className="text-[22px] md:text-4xl font-bold text-white mb-2">4+</h3>
                 <p className="text-gray-500 text-sm uppercase tracking-wider font-medium">Years Experience</p>
               </div>
               <div>
-                <h3 className="text-[15px] md:text-4xl font-bold text-white mb-2">200+</h3>
+                <h3 className="text-[22px] md:text-4xl font-bold text-white mb-2">200+</h3>
                 <p className="text-gray-500 text-sm uppercase tracking-wider font-medium">Projects Completed</p>
               </div>
             </div>

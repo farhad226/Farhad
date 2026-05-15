@@ -181,10 +181,33 @@ const testimonials = [...baseTestimonials, ...generatedTestimonials];
 
 
 export default function Testimonials() {
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [visibleCount, setVisibleCount] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768 ? 2 : 8;
+    }
+    return 8;
+  });
+
+  // Handle window resize to maintain responsiveness
+  React.useEffect(() => {
+    const handleResize = () => {
+      // Only adjust if the current count matches one of our defaults, 
+      // suggesting the user hasn't manually expanded it yet.
+      if (visibleCount === 2 || visibleCount === 8) {
+        if (window.innerWidth < 768) {
+          setVisibleCount(2);
+        } else {
+          setVisibleCount(8);
+        }
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [visibleCount]);
 
   const loadMore = () => {
-    setVisibleCount(prev => Math.min(prev + 4, testimonials.length));
+    setVisibleCount(prev => Math.min(prev + 8, testimonials.length));
   };
 
   const visibleTestimonials = testimonials.slice(0, visibleCount);
@@ -210,7 +233,7 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-bold text-white mb-6"
+            className="text-[22px] md:text-5xl font-bold text-white mb-6"
           >
             What My Clients <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00a2ff] to-[#007acc]">Say</span>
           </motion.h2>
