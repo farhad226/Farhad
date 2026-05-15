@@ -61,8 +61,8 @@ export default function Contact() {
                   <Mail className="text-[#00a2ff]" size={24} />
                 </div>
                 <div className="pt-1">
-                  <p className="text-gray-500 text-sm uppercase tracking-widest font-semibold mb-1">Email Me</p>
-                  <p className="font-bold text-xl text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.email}</p>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-1">Email Me</p>
+                  <p className="font-bold text-base md:text-lg text-white group-hover:text-[#00a2ff] transition-colors break-all">{contactInfo.email}</p>
                 </div>
               </div>
               
@@ -71,8 +71,8 @@ export default function Contact() {
                   <Phone className="text-[#00a2ff]" size={24} />
                 </div>
                 <div className="pt-1">
-                  <p className="text-gray-500 text-sm uppercase tracking-widest font-semibold mb-1">Call Me</p>
-                  <p className="font-bold text-xl text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.phone}</p>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-1">Call Me</p>
+                  <p className="font-bold text-base md:text-lg text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.phone}</p>
                 </div>
               </div>
               
@@ -81,8 +81,8 @@ export default function Contact() {
                   <MapPin className="text-[#00a2ff]" size={24} />
                 </div>
                 <div className="pt-1">
-                  <p className="text-gray-500 text-sm uppercase tracking-widest font-semibold mb-1">Location</p>
-                  <p className="font-bold text-xl text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.location}</p>
+                  <p className="text-gray-500 text-xs uppercase tracking-widest font-semibold mb-1">Location</p>
+                  <p className="font-bold text-base md:text-lg text-white group-hover:text-[#00a2ff] transition-colors">{contactInfo.location}</p>
                 </div>
               </div>
             </div>

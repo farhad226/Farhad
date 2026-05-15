@@ -110,43 +110,53 @@ export default function Portfolio() {
                 viewport={{ once: false, amount: 0.1 }}
                 exit={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }}
                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                className="group relative bg-[#1c1d27]/40 backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden hover:bg-[#1c1d27]/80 hover:border-[#00a2ff]/30 transition-all duration-500 cursor-pointer flex flex-col"
+                className="group relative rounded-2xl overflow-hidden cursor-pointer aspect-[4/5] sm:aspect-square md:aspect-[4/5]"
               >
-                {/* Glow Effect on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#00a2ff]/0 to-[#00a2ff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl -z-10 blur-xl"></div>
-
-                <div className="relative aspect-[4/3] overflow-hidden rounded-t-3xl border-b border-white/5">
-                   <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-[#0a0a0f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  {/* Subtle Base Overlay & Bottom Dark Gradient */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90"></div>
                 </div>
                 
-                <div className="p-6 md:p-8 relative flex-grow flex flex-col justify-between">
-                  <div>
-                    <div className="bg-white/5 text-gray-300 text-xs font-semibold rounded-full px-4 py-1.5 uppercase tracking-wider w-max mb-4 border border-white/10 group-hover:border-[#00a2ff]/30 group-hover:text-[#00a2ff] transition-colors">
+                {/* Content Overlay */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                  {/* Top: Category Tag */}
+                  <div className="w-full flex justify-end">
+                    <div className="bg-[#00a2ff] text-white text-sm font-semibold px-4 py-1.5 shadow-md rounded-md">
                       {item.category}
                     </div>
-                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[#00a2ff] transition-colors leading-tight mb-3">
-                      {item.title}
-                    </h3>
                   </div>
                   
-                  <div className="mt-4 flex items-center justify-between">
-                    {item.link ? (
-                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-gray-400 group-hover:text-white transition-colors flex items-center gap-2">
-                        View Project
-                        <span className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#00a2ff] transition-colors">
-                          <ArrowUpRight size={16} className="text-white" />
+                  {/* Bottom: Text & Link */}
+                  <div>
+                    {/* Optional Date (mocked if not available) or subtitle */}
+                    <div className="text-white/80 text-sm mb-2 font-medium">
+                      Project
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white leading-tight mb-4 group-hover:text-[#00a2ff] transition-colors">
+                      {item.title}
+                    </h3>
+                    
+                    <div className="flex items-center">
+                      {item.link ? (
+                        <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-white/90 group-hover:text-white transition-colors flex items-center gap-2">
+                          View details
+                          <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors backdrop-blur-sm">
+                            <ArrowUpRight size={16} className="text-white" />
+                          </span>
+                        </a>
+                      ) : (
+                        <span className="text-sm font-medium text-white/50 flex items-center gap-2">
+                          Coming Soon
                         </span>
-                      </a>
-                    ) : (
-                      <span className="text-sm font-medium text-gray-500 flex items-center gap-2">
-                        Coming Soon
-                      </span>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
               </motion.div>
