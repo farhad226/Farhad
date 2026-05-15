@@ -17,7 +17,14 @@ async function startServer() {
     const { name, email, phone, subject, message } = req.body;
 
     if (!name || !email || !message) {
-      return res.status(400).json({ error: "Missing required fields" });
+      return res.status(400).json({ error: "Missing required fields (name, email, message)" });
+    }
+
+    if (!process.env.SMTP_PASS) {
+      console.error("CRITICAL: SMTP_PASS is not set in environment variables.");
+      return res.status(500).json({ 
+        error: "Server configuration missing: SMTP_PASS. Please set this in Settings > Secrets." 
+      });
     }
 
     try {
@@ -25,12 +32,19 @@ async function startServer() {
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || "smtp.gmail.com",
         port: parseInt(process.env.SMTP_PORT || "587"),
-        secure: false, // true for 465, false for other ports
+        secure: false, 
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
+        // Helpful for debugging
+        logger: true,
+        debug: true
       });
+
+      // Verify connection configuration
+      await transporter.verify();
+      console.log("SMTP Connection verified");
 
       // Email options
       const mailOptions = {

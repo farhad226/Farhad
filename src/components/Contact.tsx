@@ -53,6 +53,7 @@ export default function Contact() {
 
     try {
       // 1. Save to Supabase (Reliable storage backup)
+      console.log("Attempting to save to Supabase...");
       const { error: supabaseError } = await supabase.from('messages').insert([{
         name: formData.name,
         email: formData.email,
@@ -61,24 +62,32 @@ export default function Contact() {
         message: formData.message,
       }]);
 
-      if (supabaseError) throw supabaseError;
+      if (supabaseError) {
+        console.error("Supabase Save Error:", supabaseError);
+        throw new Error(`Database error: ${supabaseError.message}. Did you run the SQL script?`);
+      }
 
       // 2. Send email via our Backend API
+      console.log("Attempting to send email via backend...");
       const response = await fetch('/api/contact', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
       });
 
+      const result = await response.json();
+
       if (!response.ok) {
-        throw new Error('Backend email failed');
+        console.error("Backend Email Error:", result);
+        throw new Error(result.error || 'Server email failed');
       }
       
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setTimeout(() => setSubmitStatus('idle'), 5000);
-    } catch (error) {
-      console.error("Error sending message:", error);
+    } catch (error: any) {
+      console.error("Full application error:", error);
+      alert(error.message || "An unexpected error occurred");
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
