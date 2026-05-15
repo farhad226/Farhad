@@ -4,6 +4,7 @@
 CREATE TABLE IF NOT EXISTS public.experience (
     id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
     company text NOT NULL,
+    company_url text,
     role text NOT NULL,
     period text NOT NULL,
     description text NOT NULL,
