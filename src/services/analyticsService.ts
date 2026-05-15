@@ -3,8 +3,12 @@ import { startOfDay, startOfMonth, startOfYear, format } from 'date-fns';
 
 export const trackVisit = async (path: string) => {
   try {
+    const referrer = document.referrer;
     const { error } = await supabase.from('page_visits').insert([
-      { page_path: path }
+      { 
+        page_path: path,
+        referrer: referrer || 'Direct'
+      }
     ]);
     if (error) console.error('Error tracking visit:', error);
   } catch (err) {
@@ -45,16 +49,19 @@ export const getVisitorStats = async () => {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
     
-    const { data: chartDataRaw } = await supabase
+    const { data: visitsRaw } = await supabase
       .from('page_visits')
-      .select('visited_at')
+      .select('visited_at, referrer')
       .gte('visited_at', thirtyDaysAgo.toISOString())
       .order('visited_at', { ascending: true });
 
     // Group by day for the chart
     const dailyStats: { date: string, visits: number }[] = [];
-    if (chartDataRaw) {
-      const groups = chartDataRaw.reduce((acc: any, visit: any) => {
+    const referrerStats: { source: string, count: number }[] = [];
+
+    if (visitsRaw) {
+      // Daily Grouping
+      const groups = visitsRaw.reduce((acc: any, visit: any) => {
         const dateKey = format(new Date(visit.visited_at), 'yyyy-MM-dd');
         acc[dateKey] = (acc[dateKey] || 0) + 1;
         return acc;
@@ -69,6 +76,26 @@ export const getVisitorStats = async () => {
           visits: groups[key] || 0
         });
       }
+
+      // Referrer Aggregation
+      const refGroups = visitsRaw.reduce((acc: any, visit: any) => {
+        let source = 'Direct';
+        if (visit.referrer && visit.referrer !== 'Direct') {
+          try {
+            const url = new URL(visit.referrer);
+            source = url.hostname.replace('www.', '');
+          } catch (e) {
+            source = visit.referrer;
+          }
+        }
+        acc[source] = (acc[source] || 0) + 1;
+        return acc;
+      }, {});
+
+      Object.entries(refGroups).forEach(([source, count]) => {
+        referrerStats.push({ source, count: count as number });
+      });
+      referrerStats.sort((a, b) => b.count - a.count);
     }
 
     return {
@@ -76,7 +103,8 @@ export const getVisitorStats = async () => {
       month: monthCount || 0,
       year: yearCount || 0,
       total: totalCount || 0,
-      chartData: dailyStats
+      chartData: dailyStats,
+      referrers: referrerStats.slice(0, 5) // Top 5
     };
   } catch (err) {
     console.error('Error fetching visitor stats:', err);

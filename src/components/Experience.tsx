@@ -74,7 +74,18 @@ export default function Experience() {
                       <span>{item.period}</span>
                     </div>
                     <h3 className="text-xl font-bold text-white mb-1">{item.role}</h3>
-                    <h4 className="text-gray-400 font-medium mb-4">{item.company}</h4>
+                    {item.company_url ? (
+                      <a 
+                        href={item.company_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-[#00a2ff] font-medium mb-4 hover:underline inline-block"
+                      >
+                        {item.company}
+                      </a>
+                    ) : (
+                      <h4 className="text-gray-400 font-medium mb-4">{item.company}</h4>
+                    )}
                     <p className="text-gray-500 text-sm leading-relaxed">{item.description}</p>
                   </div>
                 </div>

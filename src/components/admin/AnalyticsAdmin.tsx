@@ -154,20 +154,34 @@ export default function AnalyticsAdmin() {
             transition={{ delay: 0.5 }}
             className="bg-[#0a0a0f]/60 backdrop-blur-md border border-white/10 rounded-2xl p-6"
           >
-            <h3 className="text-lg font-semibold text-white mb-6">Top Pages</h3>
+            <h3 className="text-lg font-semibold text-white mb-6">Traffic Sources (Referrers)</h3>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="text-[#00a2ff] text-sm">/home</span>
-                <span className="text-gray-400 text-xs">{stats?.total ? Math.round(stats.total * 0.85) : 0} visits</span>
-              </div>
-              <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5">
-                <span className="text-[#00a2ff] text-sm">/portfolio</span>
-                <span className="text-gray-400 text-xs">{stats?.total ? Math.round(stats.total * 0.1) : 0} visits</span>
-              </div>
-              <div className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 opacity-50">
-                <span className="text-gray-400 text-sm">Other</span>
-                <span className="text-gray-500 text-xs">{stats?.total ? Math.round(stats.total * 0.05) : 0} visits</span>
-              </div>
+              {stats?.referrers?.length > 0 ? (
+                stats.referrers.map((ref: any, idx: number) => (
+                  <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 group hover:border-[#00a2ff]/30 transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-[#00a2ff]/10 flex items-center justify-center text-[#00a2ff] text-xs font-bold">
+                        {ref.source.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="text-gray-300 text-sm truncate max-w-[150px] sm:max-w-none">{ref.source}</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-24 h-1.5 bg-white/5 rounded-full overflow-hidden hidden sm:block">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: `${(ref.count / stats.total) * 100}%` }}
+                          className="h-full bg-[#00a2ff]"
+                        />
+                      </div>
+                      <span className="text-white text-xs font-mono">{ref.count}</span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8 text-gray-500 text-sm">
+                  No data available yet.
+                </div>
+              )}
             </div>
           </motion.div>
 

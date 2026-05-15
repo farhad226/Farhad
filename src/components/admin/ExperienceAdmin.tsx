@@ -6,8 +6,8 @@ export default function ExperienceAdmin() {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [currentItem, setCurrentItem] = useState<{id?: string, company: string, role: string, period: string, description: string}>({ 
-    company: '', role: '', period: '', description: '' 
+  const [currentItem, setCurrentItem] = useState<{id?: string, company: string, company_url?: string, role: string, period: string, description: string}>({ 
+    company: '', company_url: '', role: '', period: '', description: '' 
   });
 
   useEffect(() => {
@@ -32,6 +32,7 @@ export default function ExperienceAdmin() {
     try {
       const itemToSave = {
         company: currentItem.company,
+        company_url: currentItem.company_url,
         role: currentItem.role,
         period: currentItem.period,
         description: currentItem.description
@@ -48,7 +49,7 @@ export default function ExperienceAdmin() {
         if (error) throw error;
       }
       setIsEditing(false);
-      setCurrentItem({ company: '', role: '', period: '', description: '' });
+      setCurrentItem({ company: '', company_url: '', role: '', period: '', description: '' });
       fetchExperience();
     } catch (error) {
       console.error("Error saving experience", error);
@@ -105,6 +106,16 @@ export default function ExperienceAdmin() {
                   onChange={e => setCurrentItem({...currentItem, company: e.target.value})} 
                   className="w-full bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff]"
                   placeholder="e.g. Google"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-400 mb-1">Company Website (URL)</label>
+                <input 
+                  type="url" 
+                  value={currentItem.company_url || ''} 
+                  onChange={e => setCurrentItem({...currentItem, company_url: e.target.value})} 
+                  className="w-full bg-[#1c1d27] border border-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#00a2ff]"
+                  placeholder="https://company.com"
                 />
               </div>
               <div>
