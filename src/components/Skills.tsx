@@ -83,7 +83,7 @@ export default function Skills() {
           className="mb-16"
         >
           <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">My Skills</p>
-          <h2 className="text-2xl md:text-5xl font-bold font-heading max-w-2xl">
+          <h2 className="text-[22px] md:text-5xl font-bold font-heading max-w-2xl">
             Expertise in Modern Web Technologies
           </h2>
         </motion.div>

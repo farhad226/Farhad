@@ -43,7 +43,7 @@ export default function FAQ() {
           className="text-center mb-16"
         >
           <p className="text-[#00a2ff] uppercase tracking-wider font-semibold text-[10px] md:text-sm mb-3">Common Questions</p>
-          <h2 className="text-2xl md:text-5xl font-bold font-heading">Frequently Asked Questions</h2>
+          <h2 className="text-[22px] md:text-5xl font-bold font-heading">Frequently Asked Questions</h2>
         </motion.div>
 
         <div className="space-y-4">
